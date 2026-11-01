@@ -6,7 +6,7 @@
 
 ## O que é
 
-Este guia explica, em português simples, os 25 recursos do Claude (o assistente de IA da Anthropic) que mais aparecem na leva de novidades das últimas semanas. É para quem usa o Claude no trabalho mas não programa: contador, dono de clínica, lojista, professor. Cada conceito tem uma explicação curta, um exemplo do dia a dia e o plano em que está disponível. No fim, uma tabela de planos, três passos para começar e prompts prontos para copiar. Não precisa instalar nada: é só ler.
+Este guia explica, em português simples, os 25 recursos do Claude (o assistente de IA da Anthropic) que mais aparecem na leva de novidades das últimas semanas. É para quem usa o Claude no trabalho mas não programa: contador, dono de clínica, lojista, professor. Cada conceito tem uma explicação curta, um exemplo do dia a dia e o plano em que está disponível. No fim, uma tabela de planos, três passos para começar e prompts prontos para copiar. Para ler não precisa instalar nada; alguns recursos pedem o plano Pro e o app de computador.
 
 ## 📖 Guia
 

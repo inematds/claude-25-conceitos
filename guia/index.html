@@ -117,6 +117,8 @@
   th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);background:var(--bg2)}
   td:first-child{font-family:Sora;font-weight:800;white-space:nowrap}
   tr:last-child td{border-bottom:none}
+  .arraste{display:none;color:var(--mut);font-size:.85rem;margin:0 0 8px}
+  @media(max-width:640px){.tbl table,.tbl tbody,.tbl tr,.tbl td{display:block;min-width:0;width:auto}.tbl thead{display:none}.tbl tr{padding:12px 0;border-bottom:1px solid var(--line)}.tbl tr:last-child{border-bottom:none}.tbl td{border:none;padding:3px 16px}.tbl td:first-child{font-size:1.1rem;color:var(--amb)}.tbl td:nth-child(2){font-weight:600}.tbl td:nth-child(3){color:var(--mut)}}
   .nota{color:var(--mut);font-size:.88rem;margin-top:14px;max-width:80ch}
   .prompt h3{margin-bottom:.4em}
   .prompt p{color:var(--mut);margin:.2em 0 .8em}
@@ -164,7 +166,7 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">Em resumo</span>
-  <p>Este guia explica, em português simples, os 25 recursos do Claude (o assistente de IA da Anthropic) que mais aparecem na leva de novidades das últimas semanas. É para quem usa o Claude no trabalho mas não programa: contador, dono de clínica, lojista, professor. Cada conceito tem uma explicação curta, um exemplo do dia a dia e o plano em que está disponível. No fim, uma tabela de planos, três passos para começar e prompts prontos para copiar. Não precisa instalar nada: é só ler.</p>
+  <p>Este guia explica, em português simples, os 25 recursos do Claude (o assistente de IA da Anthropic) que mais aparecem na leva de novidades das últimas semanas. É para quem usa o Claude no trabalho mas não programa: contador, dono de clínica, lojista, professor. Cada conceito tem uma explicação curta, um exemplo do dia a dia e o plano em que está disponível. No fim, uma tabela de planos, três passos para começar e prompts prontos para copiar. Para ler não precisa instalar nada; alguns recursos pedem o plano Pro e o app de computador.</p>
 </div></section>
 
 <section id="oque"><div class="wrap">
@@ -210,7 +212,7 @@
       <div class="top"><span class="num">2</span><h3>Fable 5.1, o topo</h3></div>
       <p>O modelo mais forte, para raciocínio exigente e trabalho longo. Custa 2,5 vezes o Opus por uso, e a própria Anthropic diz que o Opus 5.5 chega ao nível do Fable na maior parte do trabalho.</p>
       <p class="dia"><b>No dia a dia:</b> o professor guarda o Fable para montar o plano de um semestre inteiro; para o resto da semana, o Opus resolve.</p>
-      <p class="plano"><b>Plano</b> Pro: só pagando créditos de uso. Max e Ultra: até metade do limite semanal. Team: só no assento Premium.</p>
+      <p class="plano"><b>Plano</b> Pro: só pagando uso extra, comprado à parte. Max e Ultra: até metade do limite semanal. Team: só no assento Premium.</p>
     </div>
     <div class="card conceito" data-conceito="3">
       <div class="top"><span class="num">3</span><h3>Tokens e janela de contexto</h3></div>
@@ -220,8 +222,8 @@
     </div>
     <div class="card conceito" data-conceito="4">
       <div class="top"><span class="num">4</span><h3>Nível de esforço</h3></div>
-      <p>Quanto o Claude pensa antes de responder: low, medium, high, xhigh e max. Nos modelos 5.5 o padrão é médio; no Fable, alto. O máximo, segundo a própria documentação, tende a pensar demais: teste antes de usar sempre. No Claude Code, troque com <code>/effort</code>.</p>
-      <p class="dia"><b>No dia a dia:</b> o lojista deixa esforço baixo para responder clientes e sobe para alto quando pede a análise das vendas do trimestre.</p>
+      <p>Quanto o Claude pensa antes de responder: baixo (low), médio (medium), alto (high), extra-alto (xhigh) e máximo (max). Nos modelos 5.5 o padrão é médio; no Fable, alto. O máximo, segundo a própria documentação, tende a pensar demais: teste antes de usar sempre. No Claude Code, troque com <code>/effort</code>.</p>
+      <p class="dia"><b>No dia a dia:</b> no Claude Code, o lojista deixa esforço baixo para renomear as fotos dos produtos e sobe para alto quando pede a análise das vendas do trimestre.</p>
       <p class="plano"><b>Plano</b> Ajuste com <code>/effort</code> no Claude Code (Pro em diante).</p>
     </div>
     <div class="card conceito" data-conceito="5">
@@ -298,7 +300,7 @@
     </div>
     <div class="card conceito" data-conceito="14">
       <div class="top"><span class="num">14</span><h3>Dashboards</h3></div>
-      <p>Você pergunta em português e o Claude monta um painel dos seus dados e mantém atualizado. Liga em bancos de dados como BigQuery, Snowflake, Databricks e Redshift. Clique num número para ver a consulta por trás; cada gráfico mostra quando foi atualizado.</p>
+      <p>Você pergunta em português e o Claude monta um painel dos seus dados e mantém atualizado. Liga nos bancos de dados de empresa, como BigQuery, Snowflake, Databricks e Redshift. Clique num número para ver a consulta por trás; cada gráfico mostra quando foi atualizado.</p>
       <p class="dia"><b>No dia a dia:</b> o gerente de uma rede de lojas, com as vendas num desses bancos, vê o resultado da semana por loja sem montar planilha.</p>
       <p class="plano"><b>Plano</b> Beta, só nos planos pagos.</p>
     </div>
@@ -364,7 +366,7 @@
   <div class="grid g3">
     <div class="card conceito" data-conceito="22">
       <div class="top"><span class="num">22</span><h3>Modos de permissão</h3></div>
-      <p>Quanto o Claude pode agir sem pedir licença: Manual, Aceitar edições, Plano, Auto e Bypass. Shift+Tab alterna. No Auto, um verificador confere cada ação antes de rodar; na versão atual ele já é o padrão em todos os planos. Com receio? Comece no modo Plano.</p>
+      <p>Quanto o Claude pode agir sem pedir licença: Manual, Aceitar edições, Plano, Auto e Bypass. Shift+Tab (a tecla de maiúsculas + Tab) alterna. No Auto, um verificador confere cada ação antes de rodar; na versão atual do Claude Code ele já é o modo inicial. Com receio? Comece no modo Plano.</p>
       <p class="dia"><b>No dia a dia:</b> no modo Plano, o Claude mostra à contadora o que vai fazer com as 300 notas antes de mexer em qualquer arquivo.</p>
       <p class="plano"><b>Plano</b> Claude Code (Pro em diante).</p>
     </div>
@@ -399,23 +401,25 @@
   <span class="chip">Qual plano tem o quê</span>
   <h2>Os planos, lado a lado</h2>
   <p class="sub">Preços e recursos conferidos em claude.com/pricing em novembro de 2026. Muda rápido: confira lá antes de assinar.</p>
+  <p class="arraste">Arraste a tabela para o lado →</p>
   <div class="tbl"><table>
     <thead><tr><th>Plano</th><th>Preço</th><th>Limites</th><th>O que tem</th></tr></thead>
     <tbody>
-      <tr><td>Free</td><td>US$ 0</td><td>Limitado (5 horas e semanal)</td><td>Sonnet e Haiku, chat, busca na web, memória, conectores, Artifacts, Docs/Slides/Design, Skills, até 5 Projetos. Sem Opus, sem Fable, sem Claude Code, sem agendar tarefas.</td></tr>
-      <tr><td>Pro</td><td>US$ 20/mês (US$ 17/mês no anual)</td><td>Base: pelo menos 5 vezes o Free por sessão de 5 horas</td><td>Tudo do Free + Opus, Claude Code, Claude no Chrome, tarefas agendadas, Dashboards (beta), Projetos ilimitados, Research. Fable só com créditos de uso.</td></tr>
-      <tr><td>Max</td><td>US$ 100/mês</td><td>5 vezes o Pro</td><td>Fable até metade do limite semanal, acesso prioritário, US$ 100/mês de créditos de API.</td></tr>
-      <tr><td>Ultra</td><td>US$ 200/mês</td><td>10 vezes o Pro no semanal; sem limite de 5 horas para conta verificada</td><td>Fable até metade do limite semanal, US$ 200/mês de créditos de API. É o antigo “Max 20x”.</td></tr>
+      <tr><td>Free</td><td>US$ 0</td><td>Limitado (5 horas e semanal)</td><td>Sonnet e Haiku, chat, busca na web, memória, conectores, Artifacts, Docs/Slides/Design, Skills, até 5 Projetos. Cowork chegando depois dos planos pagos. Sem Opus, sem Fable, sem Claude Code, sem agendar tarefas.</td></tr>
+      <tr><td>Pro</td><td>US$ 20/mês (US$ 17/mês no anual)</td><td>Base: pelo menos 5 vezes o Free por sessão de 5 horas</td><td>Tudo do Free + Opus, Cowork (junto do chat), Claude Code, Claude no Chrome, tarefas agendadas, Dashboards (beta), Projetos ilimitados, Research (pesquisa aprofundada). Fable só pagando uso extra.</td></tr>
+      <tr><td>Max</td><td>US$ 100/mês</td><td>5 vezes o Pro</td><td>Tudo do Pro + Fable até metade do limite semanal, acesso prioritário, US$ 100/mês de créditos de API.</td></tr>
+      <tr><td>Ultra</td><td>US$ 200/mês</td><td>10 vezes o Pro no semanal; sem limite de 5 horas para conta verificada</td><td>Tudo do Pro + Fable até metade do limite semanal, US$ 200/mês de créditos de API. É o antigo “Max 20x”.</td></tr>
       <tr><td>Team</td><td>Standard US$ 20/assento/mês no anual (US$ 25 mensal); Premium US$ 100 (US$ 125 mensal)</td><td>Premium = 5 vezes o Standard</td><td>De 2 a 150 pessoas. Claude Code, Cowork, Docs/Slides/Design, Motion e Dashboards (beta), login único (SSO). Fable só no Premium. Até US$ 500/mês de créditos de API em conjunto.</td></tr>
     </tbody>
   </table></div>
-  <p class="nota">Créditos de API (Max, Ultra e Team) servem para construir na Claude Platform; não valem dentro do Claude Code nem nos apps. Os limites de 5 horas e semanal são compartilhados entre web, computador, celular e Claude Code.</p>
+  <p class="nota">Créditos de API (Max, Ultra e Team) são outra coisa: servem para quem constrói sistemas próprios na Claude Platform; não pagam uso nos apps nem no Claude Code. Os limites de 5 horas e semanal são compartilhados entre web, computador, celular e Claude Code.</p>
 </div></section>
 
 <section id="comecar"><div class="wrap">
   <span class="chip">Por onde começar</span>
   <h2>Só 3 coisas</h2>
   <p class="sub">Não precisa usar os 25 amanhã. Estas três já mudam o seu dia.</p>
+  <p class="nota" style="margin:-1em 0 2em"><b>Antes de tudo:</b> os três passos usam o Claude Code, que pede o plano Pro e o app do Claude no computador (aba Code, com uma pasta sua aberta). Só usa o navegador? Comece pelo passo 1 com as instruções de um Projeto: abra um Projeto, cole o mesmo texto nas instruções e toda conversa ali já começa sabendo disso.</p>
   <div class="step"><div class="b">1</div><div>
     <h3>Um CLAUDE.md curto</h3>
     <p>Dez linhas sobre você, seu trabalho e as regras que o Claude nunca pode quebrar. Curto, porque ele é lido em toda sessão. Use o <a href="#p-claudemd">modelo pronto</a>.</p>
@@ -437,7 +441,7 @@
 
   <div class="prompt" id="p-claudemd">
     <h3>1. Modelo de CLAUDE.md para quem não programa</h3>
-    <p>Salve como <code>CLAUDE.md</code> na pasta onde você trabalha com o Claude Code.</p>
+    <p>Na aba Code, com a sua pasta aberta, peça: “crie um arquivo CLAUDE.md nesta pasta com o texto abaixo”. Troque os colchetes antes. No navegador, cole o mesmo texto nas instruções de um Projeto.</p>
 <pre><span class="k"># Quem sou</span>
 Sou [profissão] em [cidade]. Atendo [tipo de cliente].
 
@@ -457,7 +461,7 @@ Sou [profissão] em [cidade]. Atendo [tipo de cliente].
 
   <div class="prompt" id="p-skill">
     <h3>2. Transformar um pedido repetido em skill</h3>
-    <p>Cole no Claude depois de fazer a tarefa uma vez com ele, na mesma conversa.</p>
+    <p>Cole na aba Code depois de fazer a tarefa uma vez com o Claude, na mesma conversa. A skill vira um arquivo na sua pasta e, dali em diante, você chama com <code>/nome-curto</code>.</p>
 <pre>Acabamos de fazer [a tarefa, ex.: o orçamento do cliente].
 Eu faço isso toda semana. Transforme o que fizemos numa skill
 chamada /[nome-curto]:
@@ -470,7 +474,7 @@ Depois me mostre a skill e espere eu aprovar antes de salvar.</pre>
 
   <div class="prompt" id="p-goal">
     <h3>3. Três exemplos de /goal com linha de chegada verificável</h3>
-    <p>A linha de chegada boa dá para conferir sem opinião: contagem, soma, arquivo existindo.</p>
+    <p>Digite no campo de mensagem da aba Code, com a pasta do trabalho aberta (as pastas citadas precisam existir nela). A linha de chegada boa dá para conferir sem opinião: contagem, soma, arquivo existindo.</p>
 <pre><span class="c"># Contador</span>
 /goal a planilha notas-outubro.xlsx tem uma linha para cada um dos PDFs
 da pasta notas/ e a soma da coluna Valor bate com o total do extrato
@@ -481,7 +485,7 @@ em PDF na pasta folhetos/, com no máximo 1 página cada
 
 <span class="c"># Professor</span>
 /goal as 8 aulas do bimestre têm plano, exercício e gabarito na pasta
-bimestre-4/, e o índice.md lista as 8 com link</pre>
+bimestre-4/, e o arquivo indice.md lista as 8</pre>
   </div>
 </div></section>
 
