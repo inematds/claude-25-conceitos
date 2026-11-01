@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude’s 25 Concepts — for Non-Programmers</title>
+<meta name="description" content="Claude’s 25 concepts explained in simple language in 5 parts: the brain, where to use it, what it does, what it knows about you, and how to let it work on its own. With everyday examples, a plans table, and ready-to-use prompts.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/claude-25-conceitos/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/claude-25-conceitos/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/claude-25-conceitos/guia/es/">
+<meta property="og:title" content="Claude’s 25 Concepts — for Non-Programmers">
+<meta property="og:description" content="Claude’s map in 5 parts, with everyday examples and the plan required for each feature.">
+<meta property="og:image" content="https://inematds.github.io/claude-25-conceitos/guia/assets/banner-en.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light .btn{background:#FACC15}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  body.light nav{background:rgba(246,247,249,.85)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(250,204,21,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .brand,nav .links a.sec{white-space:nowrap}
+  @media(max-width:1180px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(250,204,21,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow a{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600;color:var(--txt)}
+  .flow a:hover{border-color:var(--amb)}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;white-space:pre-wrap;overflow-wrap:anywhere}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:#FACC15;color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* concept cards */
+  .parte{background:var(--bg2)}
+  .parte:nth-of-type(odd){background:var(--bg)}
+  .conceito{display:flex;flex-direction:column;gap:.55em}
+  .conceito h3{margin:0;font-size:1.08rem}
+  .conceito .num{margin:0}
+  .conceito .top{display:flex;align-items:center;gap:10px}
+  .conceito p{color:var(--txt);font-size:.95rem;margin:0}
+  .conceito .dia{color:var(--mut);font-size:.92rem;border-left:3px solid var(--amb);padding-left:10px}
+  .conceito .dia b{color:var(--txt);font-weight:600}
+  .conceito .plano{margin-top:auto;font-size:.82rem;color:var(--mut);border-top:1px dashed var(--line);padding-top:.6em}
+  .conceito .plano b{color:var(--amb);font-family:Sora;font-weight:600;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
+  .conceito .doc{font-size:.82rem}
+  .bonus{border-color:var(--amb)}
+  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{border-collapse:collapse;width:100%;min-width:720px;font-size:.9rem}
+  th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);background:var(--bg2)}
+  td:first-child{font-family:Sora;font-weight:800;white-space:nowrap}
+  tr:last-child td{border-bottom:none}
+  .nota{color:var(--mut);font-size:.88rem;margin-top:14px;max-width:80ch}
+  .prompt h3{margin-bottom:.4em}
+  .prompt p{color:var(--mut);margin:.2em 0 .8em}
+  .video{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:var(--bg2);border:1px dashed var(--line);border-radius:14px;color:var(--mut);font-family:Sora;font-weight:600;margin-top:12px}
+  .video.v916{aspect-ratio:9/16;max-width:320px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🧭</span> Claude in 25 Concepts</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#partes">The 5 parts</a>
+    <a class="sec" href="#planos">Plans</a>
+    <a class="sec" href="#comecar">Where to start</a>
+    <a class="sec" href="#prompts">Prompts</a>
+    <a class="sec" href="#videos">Videos</a>
+    <span class="lang"><a href="../">PT</a><a class="on" href="./">EN</a><a href="../es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    <a class="btn" href="https://github.com/inematds/claude-25-conceitos" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Open guide · updated November 2026</span>
+      <h1>Claude’s 25 concepts <span class="amb">for non-programmers</span></h1>
+      <p class="lead">Claude’s map in 5 parts: what each feature is, an example from everyday life, and which plan includes it.</p>
+      <div class="cta">
+        <a class="btn" href="#partes">See the 25 concepts</a>
+        <a class="btn ghost" href="#comecar">Just 3 things to get started</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-en.jpg" alt="Banner: Claude’s 25 concepts, for non-programmers"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">In short</span>
+  <p>This guide explains, in simple language, the 25 Claude features (Anthropic’s AI assistant) that have appeared most often in the wave of news over the past few weeks. It is for people who use Claude at work but do not program: accountants, clinic owners, store owners, teachers. Each concept has a short explanation, an everyday example, and the plan that includes it. At the end, you’ll find a plans table, three steps to get started, and prompts ready to copy. Nothing to install: just read.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">What it is</span>
+  <h2>A map, not a manual</h2>
+  <p class="sub">Claude has gained many new features in a short time. Instead of chasing every announcement, understand the 25 pieces and how they fit together.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-en.jpg" alt="The guide’s 5 parts: the brain, where to use it, what it does, what it knows about you, working on its own, and where to start" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>🧠 No jargon</h3><p>Each concept in 1 or 2 sentences. When a technical term appears, it is explained.</p></div>
+    <div class="card"><h3>🧾 A real example</h3><p>Accountant, clinic, store, teacher: one concrete case in each card, so you can picture how it is used.</p></div>
+    <div class="card"><h3>🏷️ The plan for each feature</h3><p>Free, Pro, Max, Ultra, or Team: you’ll know what you already have and what requires an upgrade, checked against the official pages in November 2026.</p></div>
+  </div>
+</div></section>
+
+<section id="partes"><div class="wrap">
+  <span class="chip">The 5 parts</span>
+  <h2>How the guide is organized</h2>
+  <p class="sub">Read in order or jump to the part you need. Each part answers a question.</p>
+  <div class="flow">
+    <a href="#parte1">1 · The brain</a><span class="arr">→</span>
+    <a href="#parte2">2 · Where to use it</a><span class="arr">→</span>
+    <a href="#parte3">3 · What it does</a><span class="arr">→</span>
+    <a href="#parte4">4 · What it knows about you</a><span class="arr">→</span>
+    <a href="#parte5">5 · Working on its own</a><span class="arr">→</span>
+    <a href="#planos">What each plan includes</a><span class="arr">→</span>
+    <a href="#comecar">Where to start</a>
+  </div>
+</div></section>
+
+<!-- PARTE 1 -->
+<section id="parte1" class="parte"><div class="wrap">
+  <span class="chip">Part 1 · concepts 1 to 5</span>
+  <h2>The brain: which model, how much it can handle, how much it thinks</h2>
+  <p class="sub">Before any feature, understand the engine: the models, the unit of measure (tokens), effort, and your plan’s limits.</p>
+  <div class="grid g3">
+    <div class="card conceito" data-conceito="1">
+      <div class="top"><span class="num">1</span><h3>Models: Haiku, Sonnet, and Opus 5.5</h3></div>
+      <p>Claude comes in different sizes. Haiku is fast and inexpensive, Sonnet is for everyday work, and Opus is for big, messy jobs.</p>
+      <p class="dia"><b>Everyday example:</b> an accountant uses Sonnet to answer client questions and switches to Opus when they need to review the entire month’s closing.</p>
+      <p class="plano"><b>Plan</b> Free: Sonnet and Haiku. Opus starting with Pro.</p>
+    </div>
+    <div class="card conceito" data-conceito="2">
+      <div class="top"><span class="num">2</span><h3>Fable 5.1, the top model</h3></div>
+      <p>The strongest model, for demanding reasoning and long jobs. It costs 2.5 times as much as Opus per use, and Anthropic itself says Opus 5.5 reaches Fable’s level for most work.</p>
+      <p class="dia"><b>Everyday example:</b> a teacher saves Fable for putting together a plan for an entire semester; Opus handles the rest of the week.</p>
+      <p class="plano"><b>Plan</b> Pro: only by paying for usage credits. Max and Ultra: up to half the weekly limit. Team: only with a Premium seat.</p>
+    </div>
+    <div class="card conceito" data-conceito="3">
+      <div class="top"><span class="num">3</span><h3>Tokens and context window</h3></div>
+      <p>A token is a piece of a word; it is used to measure cost and limits. The context window is how much Claude can hold at once: in current models, up to 1 million tokens, or hundreds of thousands of words. Tip: what you load (files, standing instructions) weighs more than your question.</p>
+      <p class="dia"><b>Everyday example:</b> a clinic attaches its entire procedure manual and asks only what changed in sterilization. The manual takes up almost the whole allowance; the question, almost none.</p>
+      <p class="plano"><b>Plan</b> All. Up to 1 million tokens, depending on the model.</p>
+    </div>
+    <div class="card conceito" data-conceito="4">
+      <div class="top"><span class="num">4</span><h3>Effort level</h3></div>
+      <p>How much Claude thinks before answering: low, medium, high, xhigh, and max. In the 5.5 models, the default is medium; for Fable, it is high. According to the documentation, max tends to overthink: test it before using it regularly. In Claude Code, change it with <code>/effort</code>.</p>
+      <p class="dia"><b>Everyday example:</b> a store owner keeps effort low for answering customers and raises it to high when asking for an analysis of quarterly sales.</p>
+      <p class="plano"><b>Plan</b> Adjust with <code>/effort</code> in Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="5">
+      <div class="top"><span class="num">5</span><h3>Usage limits and plans</h3></div>
+      <p>Almost every plan has two clocks: one for 5 hours and one for the week. They apply together and are shared across the web, computer, phone, and Claude Code. On Ultra, a verified account only has the weekly limit. Check yours in Settings &gt; Usage (or <code>/usage</code> in Claude Code).</p>
+      <p class="dia"><b>Everyday example:</b> a teacher who grades papers on their phone in the morning and prepares lessons on the computer in the afternoon uses the same allowance.</p>
+      <p class="plano"><b>Plan</b> See the <a href="#planos">plans table</a>.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- PARTE 2 -->
+<section id="parte2" class="parte"><div class="wrap">
+  <span class="chip">Part 2 · concepts 6 to 11</span>
+  <h2>Where to use it: chat, Code, Cowork, and the new Duet</h2>
+  <p class="sub">The same Claude shows up in different places. Knowing which door to open saves time and usage limits.</p>
+  <div class="grid g3">
+    <div class="card conceito" data-conceito="6">
+      <div class="top"><span class="num">6</span><h3>Chat</h3></div>
+      <p>The classic Claude: you ask, it answers. Since September, it has also created documents, presentations, and designs within the conversation itself.</p>
+      <p class="dia"><b>Everyday example:</b> a store owner asks, “put together 6 slides about the Christmas sale,” and gets the presentation right there.</p>
+      <p class="plano"><b>Plan</b> All, including Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="7">
+      <div class="top"><span class="num">7</span><h3>Claude Code</h3></div>
+      <p>The Code tab in the computer app. It works inside one of your folders: reads, creates, and edits files and runs commands. The name sounds intimidating, but it is not just for programmers.</p>
+      <p class="dia"><b>Everyday example:</b> an accountant points it to a folder with 300 PDF invoices and asks for a spreadsheet with supplier, date, and amount.</p>
+      <p class="plano"><b>Plan</b> Pro and above. Not available on Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="8">
+      <div class="top"><span class="num">8</span><h3>Cowork</h3></div>
+      <p>The mode for handing over an entire office job and coming back to review it. Since 16/09/2026, it has been alongside chat in the same Claude and keeps working even after you close your laptop.</p>
+      <p class="dia"><b>Everyday example:</b> an office asks it to review a folder of 40 rental agreements against its checklist and flag anything that falls outside the rules.</p>
+      <p class="plano"><b>Plan</b> First arrived on Pro, Max, and Ultra; later Team and Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="9">
+      <div class="top"><span class="num">9</span><h3>Sessions and split view</h3></div>
+      <p>Each conversation in the Code tab is a session with its own history. Open several (Ctrl+N or Cmd+N) and place two side by side with Alt+click (Option on Mac). Remote Control connects the session to the phone app so you can follow along and continue from there.</p>
+      <p class="dia"><b>Everyday example:</b> the monthly report in one session, customer replies in another, both on the same screen.</p>
+      <p class="plano"><b>Plan</b> Included with Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="10">
+      <div class="top"><span class="num">10</span><h3>Side chats</h3></div>
+      <p>A parallel conversation for asking a question without interrupting the task. Open it with Ctrl+; (Cmd+; on Mac) or <code>/btw</code>. It can see the main conversation but does not change it. The computer app does not save side chats.</p>
+      <p class="dia"><b>Everyday example:</b> in the middle of a large spreadsheet, an accountant asks, “what does tax code 5.102 mean again?” without interrupting the work.</p>
+      <p class="plano"><b>Plan</b> Included with Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="11">
+      <div class="top"><span class="num">11</span><h3>Claude Duet</h3></div>
+      <p>The new agent you interact with like a person, by text or voice. Every morning it checks email and your calendar, flags what needs attention, drafts replies, and follows up on stalled conversations. It asks before sending, paying, signing, or deleting. It runs on its own computer in the cloud.</p>
+      <p class="dia"><b>Everyday example:</b> it reminds a store owner about a supplier who has not replied in a week and drafts a follow-up for approval.</p>
+      <p class="plano"><b>Plan</b> In testing: waitlist, US only, Pro, Max, and Ultra. Not available on Team yet.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- PARTE 3 -->
+<section id="parte3" class="parte"><div class="wrap">
+  <span class="chip">Part 3 · concepts 12 to 15</span>
+  <h2>What it does: documents, dashboards, and animation</h2>
+  <p class="sub">Claude delivers more than text. It delivers the finished thing, alongside the conversation.</p>
+  <div class="grid g2">
+    <div class="card conceito" data-conceito="12">
+      <div class="top"><span class="num">12</span><h3>Artifacts</h3></div>
+      <p>What Claude creates and opens beside the chat: a document, presentation, design, dashboard, or small tool. It starts out private; you decide whether to share it.</p>
+      <p class="dia"><b>Everyday example:</b> a teacher asks for a class average calculator and sends the link to the school office.</p>
+      <p class="plano"><b>Plan</b> All, including Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="13">
+      <div class="top"><span class="num">13</span><h3>Docs, Slides, and Design</h3></div>
+      <p>Documents, presentations, and visual pieces made by Claude. They left beta on 08/10/2026 and are available on all plans. The separate site claude.ai/design stays online until 14/12/2026; after that, it will be read-only.</p>
+      <p class="dia"><b>Everyday example:</b> a clinic creates a post-visit care brochure and a presentation for its new team.</p>
+      <p class="plano"><b>Plan</b> All, including Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="14">
+      <div class="top"><span class="num">14</span><h3>Dashboards</h3></div>
+      <p>Ask in plain English and Claude builds a dashboard from your data and keeps it updated. Connect it to databases such as BigQuery, Snowflake, Databricks, and Redshift. Click a number to see the query behind it; each chart shows when it was updated.</p>
+      <p class="dia"><b>Everyday example:</b> a manager at a chain of stores with sales in one of these databases sees the weekly results for each store without building a spreadsheet.</p>
+      <p class="plano"><b>Plan</b> Beta, paid plans only.</p>
+    </div>
+    <div class="card conceito" data-conceito="15">
+      <div class="top"><span class="num">15</span><h3>Motion</h3></div>
+      <p>Turns an idea into an animated explainer that plays like a video and downloads as an MP4. It is made with code, without a video generator or AI-generated people.</p>
+      <p class="dia"><b>Everyday example:</b> a school makes a 30-second animation explaining the enrollment process step by step.</p>
+      <p class="plano"><b>Plan</b> Beta, Team and Enterprise only.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- PARTE 4 -->
+<section id="parte4" class="parte"><div class="wrap">
+  <span class="chip">Part 4 · concepts 16 to 21</span>
+  <h2>What it knows about you: memory, instructions, and extensions</h2>
+  <p class="sub">Every conversation starts from scratch. These six pieces carry forward who you are, how you work, and which tools you use.</p>
+  <div class="grid g3">
+    <div class="card conceito" data-conceito="16">
+      <div class="top"><span class="num">16</span><h3>Memory</h3></div>
+      <p>Memory carries important information into future conversations. Claude Code also has automatic memory: notes Claude writes based on your corrections and preferences.</p>
+      <p class="dia"><b>Everyday example:</b> Claude remembers that an accountant serves only MEI and Simples Nacional businesses and does not ask again.</p>
+      <p class="plano"><b>Plan</b> All, including Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="17">
+      <div class="top"><span class="num">17</span><h3>CLAUDE.md</h3></div>
+      <p>An instruction file you write that Claude reads at the start of every session. Memory is what Claude writes down; CLAUDE.md is what you write down. Keep it short: everything there is loaded every time.</p>
+      <p class="dia"><b>Everyday example:</b> “Use simple English. Our clients are small clinics. Never send anything without my approval.” <a href="#prompts">See a ready-to-use template</a>.</p>
+      <p class="plano"><b>Plan</b> Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="18">
+      <div class="top"><span class="num">18</span><h3>Skills</h3></div>
+      <p>A file (SKILL.md) with the right way to do a task. Claude uses it when it is relevant, or you call it with <code>/name</code>. Until it is used, only its name and description take up space.</p>
+      <p class="dia"><b>Everyday example:</b> a store creates the <code>/quote</code> skill, which always prepares a quote using the company’s template, with a deadline and payment terms.</p>
+      <p class="plano"><b>Plan</b> All, including Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="19">
+      <div class="top"><span class="num">19</span><h3>Connectors</h3></div>
+      <p>They connect Claude to the apps you already use, so it can read and work with them. Many use MCP (Model Context Protocol), an open standard for this connection.</p>
+      <p class="dia"><b>Everyday example:</b> with its calendar connected, a clinic asks, “what times are free on Thursday?” and Claude checks the actual calendar to answer.</p>
+      <p class="plano"><b>Plan</b> All, including Free.</p>
+    </div>
+    <div class="card conceito" data-conceito="20">
+      <div class="top"><span class="num">20</span><h3>Plugins</h3></div>
+      <p>A package that installs Skills, agents, automatic rules (hooks), and MCP connectors all at once. There is an official marketplace for finding ready-made plugins.</p>
+      <p class="dia"><b>Everyday example:</b> an office installs a ready-made package for sales instead of setting up each piece one by one.</p>
+      <p class="plano"><b>Plan</b> Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="21">
+      <div class="top"><span class="num">21</span><h3>Mods</h3></div>
+      <p>A type of plugin that changes how Claude Code looks and behaves: panels beside the conversation, a strip above the text field, new commands. You do not need to program: describe what you want and Claude writes it. Mods do not run in isolation, so check before installing one from someone else.</p>
+      <p class="dia"><b>Everyday example:</b> “make a mod that shows above the prompt how many tasks are left today.”</p>
+      <p class="plano"><b>Plan</b> Claude Code (Pro and above).</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- PARTE 5 -->
+<section id="parte5" class="parte"><div class="wrap">
+  <span class="chip">Part 5 · concepts 22 to 25 + bonus</span>
+  <h2>Working on its own: permission, helpers, and the finish line</h2>
+  <p class="sub">Here Claude stops being a conversation and becomes a colleague who gets things done. You decide how much it can do without asking.</p>
+  <div class="grid g3">
+    <div class="card conceito" data-conceito="22">
+      <div class="top"><span class="num">22</span><h3>Permission modes</h3></div>
+      <p>How much Claude can do without asking permission: Manual, Accept Edits, Plan, Auto, and Bypass. Shift+Tab switches between them. In Auto, a checker reviews each action before it runs; in the current version, it is already the default on all plans. Worried? Start in Plan mode.</p>
+      <p class="dia"><b>Everyday example:</b> in Plan mode, Claude shows an accountant what it will do with the 300 invoices before touching any file.</p>
+      <p class="plano"><b>Plan</b> Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="23">
+      <div class="top"><span class="num">23</span><h3>Subagents</h3></div>
+      <p>Helpers with their own working memory. They handle one part of a task and return only a summary, keeping the main conversation clear. They use the same limit as you.</p>
+      <p class="dia"><b>Everyday example:</b> a subagent reads 50 résumés and returns the 5 closest matches for the job, with a reason for each.</p>
+      <p class="plano"><b>Plan</b> Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito" data-conceito="24">
+      <div class="top"><span class="num">24</span><h3>Projects</h3></div>
+      <p>In the app, a Project is a folder of conversations with files and standing instructions. In Claude Code, Projects means something else: an ongoing conversation that opens a work thread for each task, usually in the cloud, and continues while your computer is off. It uses up your limit faster.</p>
+      <p class="dia"><b>Everyday example:</b> the “Clinic” Project stores the price list and message style; every conversation there starts with that information.</p>
+      <p class="plano"><b>Plan</b> In the app: Free allows up to 5, unlimited starting with Pro. In Claude Code: beta on Pro, Max, and Ultra, rolling out gradually.</p>
+    </div>
+    <div class="card conceito" data-conceito="25">
+      <div class="top"><span class="num">25</span><h3>/goal</h3></div>
+      <p>Give Claude a clear, verifiable finish line, and it works until it crosses it. After each step, a model checks whether the condition has been met; if not, Claude continues on its own. It stops when the condition is met, when it judges the task impossible, or when an error needs you to fix it.</p>
+      <p class="dia"><b>Everyday example:</b> “/goal all 300 invoices are in the spreadsheet and the sum matches the monthly statement.” <a href="#prompts">More examples</a>.</p>
+      <p class="plano"><b>Plan</b> Claude Code (Pro and above).</p>
+    </div>
+    <div class="card conceito bonus">
+      <div class="top"><span class="num">+</span><h3>Bonus: scheduled tasks</h3></div>
+      <p>Tasks that run on their own at a set time. In the computer app, they run on your machine. In the cloud (the former “routines,” now “scheduled tasks”), they can start on a schedule, a GitHub event, or a call; start with <code>/schedule</code>.</p>
+      <p class="dia"><b>Everyday example:</b> every Monday at 8 a.m., the previous week’s sales summary is ready for the meeting.</p>
+      <p class="plano"><b>Plan</b> Pro and above. In the cloud, still in testing (Pro, Max, Ultra, Team, and Enterprise).</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="planos"><div class="wrap">
+  <span class="chip">What each plan includes</span>
+  <h2>The plans, side by side</h2>
+  <p class="sub">Prices and features checked at claude.com/pricing in November 2026. Things change quickly: check there before subscribing.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Plan</th><th>Price</th><th>Limits</th><th>What’s included</th></tr></thead>
+    <tbody>
+      <tr><td>Free</td><td>US$ 0</td><td>Limited (5-hour and weekly)</td><td>Sonnet and Haiku, chat, web search, memory, connectors, Artifacts, Docs/Slides/Design, Skills, up to 5 Projects. No Opus, no Fable, no Claude Code, no scheduled tasks.</td></tr>
+      <tr><td>Pro</td><td>US$ 20/month (US$ 17/month annually)</td><td>Base: at least 5 times Free per 5-hour session</td><td>Everything in Free + Opus, Claude Code, Claude in Chrome, scheduled tasks, Dashboards (beta), unlimited Projects, Research. Fable only with usage credits.</td></tr>
+      <tr><td>Max</td><td>US$ 100/month</td><td>5 times Pro</td><td>Fable up to half the weekly limit, priority access, US$ 100/month in API credits.</td></tr>
+      <tr><td>Ultra</td><td>US$ 200/month</td><td>10 times Pro on the weekly limit; no 5-hour limit for verified accounts</td><td>Fable up to half the weekly limit, US$ 200/month in API credits. This is the former “Max 20x.”</td></tr>
+      <tr><td>Team</td><td>Standard US$ 20/seat/month annually (US$ 25 monthly); Premium US$ 100 (US$ 125 monthly)</td><td>Premium = 5 times Standard</td><td>2 to 150 people. Claude Code, Cowork, Docs/Slides/Design, Motion, and Dashboards (beta), single sign-on (SSO). Fable only on Premium. Up to US$ 500/month in shared API credits.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="nota">API credits (Max, Ultra, and Team) are for building on Claude Platform; they do not apply inside Claude Code or the apps. The 5-hour and weekly limits are shared across the web, computer, phone, and Claude Code.</p>
+</div></section>
+
+<section id="comecar"><div class="wrap">
+  <span class="chip">Where to start</span>
+  <h2>Just 3 things</h2>
+  <p class="sub">You do not need to use all 25 tomorrow. These three can already change your day.</p>
+  <div class="step"><div class="b">1</div><div>
+    <h3>A short CLAUDE.md</h3>
+    <p>Ten lines about you, your work, and the rules Claude must never break. Keep it short, because it is read in every session. Use the <a href="#p-claudemd">ready-to-use template</a>.</p>
+  </div></div>
+  <div class="step"><div class="b">2</div><div>
+    <h3>A skill for the request you repeat most often</h3>
+    <p>That request you type every week (a quote, a reply to a patient, a report) becomes a <code>/command</code>. Use the <a href="#p-skill">skill prompt</a>.</p>
+  </div></div>
+  <div class="step"><div class="b">3</div><div>
+    <h3>Your next big task with /goal</h3>
+    <p>Choose a big task and write a finish line you can check: a count, a sum, a file that needs to exist. See the <a href="#p-goal">examples</a>.</p>
+  </div></div>
+</div></section>
+
+<section id="prompts"><div class="wrap">
+  <span class="chip">Ready-to-use prompts</span>
+  <h2>Copy, replace what’s in brackets, and use</h2>
+  <p class="sub">Three templates for the first three steps.</p>
+
+  <div class="prompt" id="p-claudemd">
+    <h3>1. CLAUDE.md template for non-programmers</h3>
+    <p>Save it as <code>CLAUDE.md</code> in the folder where you work with Claude Code.</p>
+<pre><span class="k"># Who I am</span>
+I am a [profession] in [city]. I serve [type of client].
+
+<span class="k"># How to respond</span>
+- Use simple English, short sentences, and no jargon.
+- When information is missing, ask before making anything up.
+- Amounts in your local currency, dates in mm/dd/yyyy.
+
+<span class="k"># Rules that must never be broken</span>
+- Never send, delete, or pay for anything without my approval.
+- Client data stays in this folder; do not copy it elsewhere.
+
+<span class="k"># Where things are</span>
+- Document templates: [templates/ folder]
+- Main spreadsheet: [file.xlsx]</pre>
+  </div>
+
+  <div class="prompt" id="p-skill">
+    <h3>2. Turn a repeated request into a skill</h3>
+    <p>Paste this into Claude after you have done the task with it once, in the same conversation.</p>
+<pre>We just did [the task, e.g., the client’s quote].
+I do this every week. Turn what we did into a skill
+called /[short-name]:
+- write the SKILL.md with a name, a description of when to use it, and the steps;
+- include the exact output format I approved here;
+- list what you need to ask me when information is missing;
+- do not make up rules I did not give you.
+Then show me the skill and wait for my approval before saving it.</pre>
+  </div>
+
+  <div class="prompt" id="p-goal">
+    <h3>3. Three /goal examples with a verifiable finish line</h3>
+    <p>A good finish line can be checked without opinion: a count, a sum, a file that exists.</p>
+<pre><span class="c"># Accountant</span>
+/goal the spreadsheet october-invoices.xlsx has one row for each PDF
+in the invoices/ folder and the sum of the Amount column matches the statement total
+
+<span class="c"># Clinic</span>
+/goal each of the 12 procedures on the list has a care brochure
+in PDF format in the brochures/ folder, with no more than 1 page each
+
+<span class="c"># Teacher</span>
+/goal all 8 classes for the term have a lesson plan, exercise, and answer key
+in the term-4/ folder, and the index.md lists all 8 with links</pre>
+  </div>
+</div></section>
+
+<section id="videos"><div class="wrap">
+  <span class="chip">Videos</span>
+  <h2>Watch</h2>
+  <p class="sub">The full explainer and the short version for phones.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Explainer: the 25 concepts</h3>
+      <!-- VIDEO-EXPLICA -->
+      <div class="video">coming soon</div>
+    </div>
+    <div class="card">
+      <h3>Short version</h3>
+      <!-- VIDEO-RTEX -->
+      <div class="video v916">coming soon</div>
+    </div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Checked on 01/11/2026</div><div class="pill">PT · EN · ES</div><div class="pill">Open and free content</div>
+    <p style="margin-top:18px">Official documentation:
+      <a href="https://claude.com/pricing" target="_blank" rel="noopener">claude.com/pricing</a> ·
+      <a href="https://code.claude.com/docs" target="_blank" rel="noopener">code.claude.com/docs</a> ·
+      <a href="https://support.claude.com" target="_blank" rel="noopener">support.claude.com</a></p>
+    <p>Claude in 25 Concepts · independent guide, not from Anthropic ·
+      <a href="https://github.com/inematds/claude-25-conceitos">inematds/claude-25-conceitos</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='claude-25-conceitos-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
